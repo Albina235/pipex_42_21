@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
+#include "../src/pipex.h"
 
 static int	ft_countwords(char *s, char c)
 {

@@ -1,4 +1,22 @@
-# include "pipex.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: evalorie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/28 10:15:39 by evalorie          #+#    #+#             */
+/*   Updated: 2022/03/28 10:15:40 by evalorie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "pipex.h"
+
+void	message_error(char *str)
+{
+	perror(str);
+	exit (1);
+}
 
 char	*find_paths(char **env)
 {
@@ -27,9 +45,9 @@ int	main(int argc, char **argv, char **env)
 		message_error("Outputfile error\n");
 	if (pipe(all.fd) < 0)
 		message_error("Pipe error\n");
-	all.paths = find_paths(env); /*find all command files*/
-	all.cmd_paths = ft_split(all.paths, ':'); //all commad path in 2_d array
-	all.id1 = fork(); //first branching
+	all.paths = find_paths(env);
+	all.cmd_paths = ft_split(all.paths, ':');
+	all.id1 = fork();
 	if (all.id1 == 0)
 		first_child(all, argv, env);
 	all.id2 = fork();

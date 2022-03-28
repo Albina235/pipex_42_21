@@ -1,10 +1,16 @@
-# include "pipex.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: evalorie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/28 10:12:37 by evalorie          #+#    #+#             */
+/*   Updated: 2022/03/28 10:12:39 by evalorie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	message_error(char *str)
-{
-	perror(str);
-	exit (1);
-}
+#include "pipex.h"
 
 void	parent_free(t_pipex *all)
 {
@@ -26,5 +32,5 @@ void	child_free(t_pipex *all)
 	while (all->cmd_args[++i])
 		free(all->cmd_args[i]);
 	free(all->cmd_args);
-	free(all->cmd); // free(all->cmd_paths) ?????????
+	free(all->cmd);
 }

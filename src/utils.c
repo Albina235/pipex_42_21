@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: evalorie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/28 10:15:56 by evalorie          #+#    #+#             */
+/*   Updated: 2022/03/28 10:15:57 by evalorie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 static char	*get_cmd(char **cmd_paths, char *cmd)
@@ -10,7 +22,7 @@ static char	*get_cmd(char **cmd_paths, char *cmd)
 		tmp = ft_strjoin(*cmd_paths, "/");
 		command = ft_strjoin(tmp, cmd);
 		free(tmp);
-		if (access(command, F_OK) == 0) // check if there is a file in the current directory, that is, if such a command exist
+		if (access(command, F_OK) == 0)
 			return (command);
 		free(command);
 		cmd_paths++;
@@ -31,6 +43,7 @@ void	second_child(t_pipex all, char **argv, char **env)
 		message_error("Command error\n");
 	}
 	execve(all.cmd, all.cmd_args, env);
+	exit(0);
 }
 
 void	first_child(t_pipex all, char **argv, char **env)
